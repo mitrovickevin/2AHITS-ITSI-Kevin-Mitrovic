@@ -3,6 +3,29 @@ modules = ["python-3.11"]
 expertMode = true
 
 [workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Project Status"
+
+[[workflows.workflow]]
+name = "Project Status"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = """
+echo \"Project Structure:\" && ls -la && echo -e \"
+Python version:\" && python3 --version"""
+
+[workflows.workflow.metadata]
+outputType = "console"
 
 [[ports]]
 localPort = 5000
